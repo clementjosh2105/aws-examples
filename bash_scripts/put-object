@@ -1,0 +1,29 @@
+#! /usr/bin/env bash
+
+echo "== put random objects to a bucket"
+
+# Exist if any error occurs
+set -e
+
+#Check for bucket name
+if [ -z "$1" ]; then
+    echo "There needs to be a bucket name eg. ./bucket my-bucket-name"
+    exit 1
+fi
+
+output_dir="/tmp/s3-bash-scripts"
+
+rm -r $output_dir
+mkdir -p
+
+num_files=$((RANDOM % 6 + 5))
+
+for ((i=1; i<=num_files; i++)); do
+    filename="$output_dir/$(tr -dc 'a-zA-Z0-9' < /dev/urandom | head -c 8).txt"
+    head -c $((RANDOM % 1000 + 100)) /dev/urandom > "$filename"
+    echo "Created: $filename"
+done
+
+tree $output_dir
+
+aws s3api sync $output_dir s3://$1/files
