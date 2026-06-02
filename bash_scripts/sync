@@ -11,10 +11,14 @@ if [ -z "$1" ]; then
     exit 1
 fi
 
-output_dir="/tmp/s3-bash-scripts"
-
+output_dir="/home/clementjosh/Documents/s3-tutorials/bash-script"
 rm -r $output_dir
-mkdir -p
+
+echo "$output_dir folder deleted"
+
+
+mkdir -p $output_dir
+echo "$output_dir folder created"
 
 num_files=$((RANDOM % 6 + 5))
 
@@ -26,4 +30,4 @@ done
 
 tree $output_dir
 
-aws s3api sync $output_dir s3://$1/files
+aws s3 sync $output_dir s3://$1/files
