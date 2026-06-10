@@ -16,9 +16,10 @@ A collection of Bash scripts for managing Amazon S3 buckets and objects.
 ### June 9
 * Refactored and defined the `README.md` file.
 *  **PowerShell with AWS**
-   * Commands
-     * Aws Tool Installer - Install-Module -Name AWS.Tools.Installer
-     * S3 Installer - Install-AWSToolsModule AWS.Tools.S3
+    * Create Bucket & put an object
+        * Commands
+            * Aws Tool Installer - ```Install-Module -Name AWS.Tools.Installer```
+            * S3 Installer - ```Install-AWSToolsModule AWS.Tools.S3```
 
 ---
 
